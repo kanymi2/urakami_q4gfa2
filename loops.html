@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #multitable{
+            background-color:rgb(255, 255, 255);
+            margin-top: 1vh;
+            height: 50vh;
+            width: 50vw;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <p>Enter a number from 2-10:</p>
+        <input type="text" id="n1" onblur="checkn1()">
+         
+        <span>by</span>
+        <input type="text" id="n2" onblur="checkn2()">
+
+        <br><br>
+
+        <input type="submit" value="Click here when ready!" id="submit" onclick="return createMulti()">
+
+        <div id="multitable"></div>
+    </form>
+
+
+    <script>
+        var n1 = document.getElementById("n1").value;
+        var n2 = document.getElementById("n2").value;
+
+        var counter1 = 0;
+        var counter2 = 0;
+
+        var multi = false;
+        var alerted = false;
+
+        function checkn1(){
+            n1 = document.getElementById("n1").value;
+
+            if ((n1 < 2 || n1 > 10) || isNaN(n1) == true){
+                alert("Please enter a number from 2 to 10.");
+                document.getElementById("submit").disabled = true;
+            } else {
+                document.getElementById("submit").disabled = false;
+            }
+            document.getElementById("resma1").innerHTML = n1;
+        }
+
+        function checkn2(){
+            n2 = document.getElementById("n2").value;
+
+            if ((n2 < 2 || n2 > 10) || isNaN(n2) == true){
+                alert("Please enter a number from 2 to 10.");
+                document.getElementById("submit").disabled = true;
+            } else {
+                document.getElementById("submit").disabled = false;
+            }
+            document.getElementById("resma2").innerHTML = n2;
+        }
+
+        function createMulti(){
+            document.getElementById("multitable").innerHTML = "";
+            counter1 = 1;
+            counter2 = 1;
+
+            if (n1 < 2 || n1 > 10){
+                checkn1();
+            }
+            if (n2 < 2 || n2 > 10){
+                checkn2();
+            }
+
+            while (counter1 <= n1){
+
+                while (counter2 <= n2){
+                    if (counter2 < n2){
+                        document.getElementById("multitable").innerHTML += counter1*counter2 + " ";
+                    } else if (counter2 = n2){
+                        document.getElementById("multitable").innerHTML += counter1*counter2 + "<br>";
+                    }
+                    counter2 = counter2 + 1;
+                }
+                counter1 = counter1 + 1;
+                counter2 = 1;
+            }
+            return false;
+        }
+        
+    </script>
+</body>
+</html>
